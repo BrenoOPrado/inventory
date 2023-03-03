@@ -6,7 +6,7 @@ class SimpleReport:
         pass
 
     @staticmethod
-    def generate(data):
+    def filter_informations(data):
         manufacturing_date = []
         expiration_date = []
         products_by_company = {}
@@ -19,11 +19,24 @@ class SimpleReport:
                 products_by_company[product["nome_da_empresa"]] += 1
             else:
                 products_by_company[product["nome_da_empresa"]] = 1
+        return dict({
+            "manufacturing_date": manufacturing_date,
+            "expiration_date": expiration_date,
+            "products_by_company": products_by_company,
+        })
+
+    @staticmethod
+    def generate(data):
+        filtered_data = SimpleReport.filter_informations(data)
+        max_products_by_country = max(
+            filtered_data['products_by_company'],
+            key=filtered_data['products_by_company'].get,
+        )
         return (
             "Data de fabricação mais antiga: "
-            f"{min(manufacturing_date)}\n"
+            f"{min(filtered_data['manufacturing_date'])}\n"
             "Data de validade mais próxima: "
-            f"{min(expiration_date)}\n"
+            f"{min(filtered_data['expiration_date'])}\n"
             "Empresa com mais produtos: "
-            f"{max(products_by_company, key= products_by_company.get)}"
+            f"{max_products_by_country}"
         )
