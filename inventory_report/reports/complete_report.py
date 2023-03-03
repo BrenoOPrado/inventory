@@ -1,20 +1,26 @@
-from simple_report import SimpleReport
+from inventory_report.reports.simple_report import SimpleReport
 
 
 class CompleteReport(SimpleReport):
     def __init__(self):
         pass
 
-    @staticmethod
-    def generate(data):
+    @classmethod
+    def generate(cls, data):
         simple_message = super().generate(data)
-        new_part = "\nProdutos estocados por empresa: \n"
+        new_part = ""
         products_by_company = (
             super().filter_informations(data)
         )['products_by_company']
-        for chave, valor in products_by_company:
+        for key in sorted(products_by_company,
+                          key=products_by_company.get,
+                          reverse=True,
+                          ):
             new_part += (
-                f" - {chave}: {valor}\n"
+                f"- {key}: {products_by_company[key]}\n"
             )
-        res = simple_message + new_part
-        return res
+        return (
+            f"{simple_message}\n"
+            f"Produtos estocados por empresa: \n"
+            f"{new_part}"
+        )
