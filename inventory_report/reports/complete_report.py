@@ -16,11 +16,11 @@ class CompleteReport(SimpleReport):
                           key=products_by_company.get,
                           reverse=True,
                           ):
-            new_part += (
-                f"- {key}: {products_by_company[key]}\n"
-            )
-        return (
+            new_part += f"- {key}: {products_by_company[key]}\n"
+        res = (
             f"{simple_message}\n"
-            f"Produtos estocados por empresa: \n"
+            f"Produtos estocados por empresa:\n"
             f"{new_part}"
         )
+        print(res)
+        return res
