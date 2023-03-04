@@ -25,9 +25,9 @@ class SimpleReport:
             "products_by_company": products_by_company,
         })
 
-    @staticmethod
-    def generate(data):
-        filtered_data = SimpleReport.filter_informations(data)
+    @classmethod
+    def generate(cls, data):
+        filtered_data = cls.filter_informations(data)
         max_products_by_country = max(
             filtered_data['products_by_company'],
             key=filtered_data['products_by_company'].get,
