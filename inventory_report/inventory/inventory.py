@@ -37,10 +37,10 @@ class Inventory:
         data = [{item.tag: item.text for item in elem}
                 for elem in xml_data]
         # Encontrei a solução na internet e acho que entendi
-        # xml_data == [[{...}, ...], ...]
+        # xml_data = [[{...}, ...], ...]
         # elem = [{...}, ...]
         # item = {tag: *algo*, text: *algo*, ...}
-        # data = [{tag: texto}, ...]
+        # data = [{tag: text}, ...]
         return cls.generate_report(data, type)
 
     @staticmethod
