@@ -4,12 +4,12 @@ from inventory_report.inventory.product import Product
 def test_relatorio_produto():
     data = dict({
         "id": 3,
-        "nome_do_produto": "sorvete",
-        "nome_da_empresa": "trybe",
+        "nome_do_produto": "barra de chocolate",
+        "nome_da_empresa": "Nestle",
         "data_de_fabricacao": "2023-02-06",
         "data_de_validade": "2023-03-22",
-        "numero_de_serie": "EX52 2034 8595 7904 7131",
-        "instrucoes_de_armazenamento": "Guardar em lugar gelado"
+        "numero_de_serie": "EX11 244 789 735",
+        "instrucoes_de_armazenamento": "em lugar refrigerado"
     })
     result = str(Product(
         data["id"],

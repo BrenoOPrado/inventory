@@ -2,9 +2,6 @@ from inventory_report.reports.simple_report import SimpleReport
 
 
 class CompleteReport(SimpleReport):
-    def __init__(self):
-        pass
-
     @classmethod
     def generate(cls, data):
         simple_message = super().generate(data)
